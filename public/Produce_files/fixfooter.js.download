@@ -1,0 +1,11 @@
+	
+	jQuery(document).ready(function(){
+  		jQuery(window).resize(function(){
+			    var footerHeight = jQuery('.footer-container').outerHeight();
+			    var stickFooterPush = jQuery('.push').height(footerHeight);
+		
+    			jQuery('.wrapper').css({'marginBottom':'-' + footerHeight + 'px'});
+		    });
+		
+   		jQuery(window).resize();
+	    });

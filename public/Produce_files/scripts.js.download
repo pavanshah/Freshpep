@@ -1,0 +1,105 @@
+function customSelects(parent) {
+    var selectParentObj;
+
+    if (parent) {
+        var selects = parent.find('select');
+
+        selects.each(function () {
+            if (jQuery(this).hasClass('chzn-done') === false) {
+                jQuery(this).chosen();
+            }
+        });
+        selectParentObj = selects;
+    } else {
+        selectParentObj = jQuery("select").chosen();
+    }
+
+    // If Protoypes fireEvent function exisits then we'll need to use it to trigger the change event for Magento functionality
+    if (typeof fireEvent !== "undefined") {
+
+        // For each custom select appended to the DOM
+        selectParentObj.each(function () {
+            var thisObj = jQuery(this),
+                thisVal = jQuery(this).val(),
+                thisId = jQuery(this).attr('id');
+
+            // On change, change the val attached to the select to stop a infinite loop (due to calling the change event that will trigger the change event)
+            jQuery(this).on('change', function () {
+                if (thisVal !== thisObj.val()) {
+                    thisVal = thisObj.val();
+                    fireEvent(thisObj[0], 'change');
+
+                    if (jQuery(this).hasClass('parent')) {
+                        var boo = jQuery(this).parent().next().find('select');
+
+                        for (var i = boo.length - 1; i >= 0; i--) {
+                            if (thisId !== boo[i].id) {
+                                jQuery('#' + boo[i].id).trigger("liszt:updated");
+                            }
+                        };
+                    }
+
+                    if (jQuery(this).hasClass('child')) {
+                        var boo = jQuery(this).parent().next().find('select');
+
+                        for (var i = boo.length - 1; i >= 0; i--) {
+                            if (thisId !== boo[i].id) {
+                                jQuery('#' + boo[i].id).trigger("liszt:updated");
+                            }
+                        };
+                    }
+                }
+            });
+        });
+    }
+}
+
+jQuery(document).ready(function () {
+    jQuery('.show-details').on('click', function () {
+        jQuery(this).hide();
+        jQuery(this).next('.hide-details').show();
+        jQuery('.placed-order-container').slideUp();
+        jQuery(this).parents('.placed-order-details').next('.placed-order-container').slideDown();
+    });
+    jQuery('.hide-details').on('click', function () {
+        jQuery(this).hide();
+        jQuery(this).prev('.show-details').show();
+        jQuery(this).parents('.placed-order-details').next('.placed-order-container').slideUp();
+    });
+    jQuery('.request-return').on('click', function () {
+        jQuery(this).parents('.request-action').hide();
+        jQuery('.confirm-request').slideUp();
+        jQuery(this).parents('.request-action').next('.confirm-request').slideDown();
+    });
+    jQuery('.cancel-return').on('click', function () {
+        jQuery(this).parents('.confirm-request').hide();
+        jQuery(this).parents('.confirm-request').prev('.request-action').slideDown();
+    });
+    jQuery('.edit-review').on('click', function () {
+        jQuery(this).parent('h3').siblings('.review-content').hide();
+        jQuery('.review-edit-content').slideUp();
+        jQuery(this).parent('h3').siblings('.review-edit-content').slideDown();
+    });
+    jQuery('.cancel-btn').on('click', function () {
+        jQuery(this).parents('.review-edit-content').hide();
+        jQuery(this).parents('.review-edit-content').siblings('.review-content').slideDown();
+    });
+
+    /*  jQuery('.testimonial-slider').slick({
+         dots: true,
+         arrows: false,
+         infinite: false,
+         autoplay: true,
+         autoplaySpeed: 2000
+     }); */
+
+    jQuery('.openpopup').click(function () {
+        jQuery('#whyFreshPepModal').slideDown();
+        jQuery('body').addClass('noscroll');
+    });
+    jQuery('.close-popup').click(function () {
+        jQuery('#whyFreshPepModal').slideUp();
+        jQuery('body').removeClass('noscroll');
+    });
+
+});

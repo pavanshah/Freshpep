@@ -1,0 +1,99 @@
+.certificates {
+  background: none repeat scroll 0 0 #FFFFFF;
+  padding: 10px;
+  position: fixed;
+  right: 0;
+  float: right;
+  margin-top:230px;
+  z-index:9999;
+}
+
+.certificates .img {
+    float: none;
+    height:auto;
+    margin:0px 4.8px;
+    display:static;
+    width:60px;
+}
+.certificate-box { float:left; width:100%; padding:40px 0 0;}
+.certificate-box .std .logoimg { float:left; width:100px; }
+.certificate-box .std h1 { color: #68b367; font-size:21px; font-weight: normal; font-family:Montserrat,"open sans","Titillium Web","Helvetica Neue",Helvetica,Arial,sans-serif; margin-bottom:25px; padding:15px 0 22px; border-bottom: 1px solid #d5d5d5; }
+.certificate-box .std .job-meta { font-family:Arial, Helvetica, sans-serif; font-size:13px; line-height:21px; }
+
+@media (min-width:320px) and (max-width:767px) {
+
+/*.certificates {
+    top: 90px;
+    width: 100%;
+    overflow:auto;
+    overflow-x: scroll;
+    height:80px;
+    white-space: nowrap;
+}*/
+
+.certificates {
+    float: left;
+    height: 74px;
+    top: 90px;
+    margin-top: 0;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+    width: 100%;
+    position: absolute;
+}
+.inner-certficate {float: left;
+    height: 73px;
+    overflow-x:auto;
+    width:450px;
+ }
+
+
+
+.certificates .img {
+    float: left;
+    width:65px;
+    height: 50px;
+    margin: 4px 4.8px;
+    display:inline-block;
+}
+
+.certificates .img img {
+float:left; 
+height:100%;
+width:100%;
+}
+
+.col1-layout {
+margin:0px 0px 0px;
+}
+
+.breadcrumbs li{ padding:0 10px; margin-right:0;}
+.breadcrumbs li a{margin-right:10px;}
+.breadcrumbs li strong{margin-right:0;}
+
+.inner-certficate {
+    display: inline-block;
+    text-align: center;
+    width: 100%; height:74px;
+}
+.certificates .img {
+    display: inline-block;
+    float: none;
+
+}
+.page-title {
+    margin-top: 21px;
+}
+.certificates .img img{float:none;}
+}
+
+
+
+.job-meta {
+    float: right;
+    font-size: 16px;
+    text-align: left;
+    width: 100%;
+    word-wrap: break-word;
+   }
