@@ -58,13 +58,20 @@
             <script type="text/javascript" src="https://www.freshpep.com/skin/frontend/wd/freshpep/js/jquery.selectric.js"></script>
             <script type="text/javascript" src="https://www.freshpep.com/skin/frontend/wd/freshpep/js/fixfooter.js"></script>
             <script type="text/javascript" src="https://www.freshpep.com/skin/frontend/wd/freshpep/js/noconflict.js"></script>
-            <link rel="canonical" href="https://www.freshpep.com/produce.html" />       
+            <link rel="canonical" href="https://www.freshpep.com/produce.html" />
+            
+            <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
+  			<script src="AngularFiles/FreshPepAngular.js"></script>
+  			<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+  			<script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>     
 
         </head>
 
 
                 
-        <body>
+        <body ng-app="freshpep" ng-controller="freshpep">
+                    
+            {{trial}}        
                     
             <div class="topHeaderContainer">
                 <div class="topHeader container">
@@ -279,12 +286,17 @@
                 </div>
 
 
-
-
-
-
-
-
+	
+	<div class = "row">
+						
+						<table>
+  							<tr ng-repeat="product in productdata">
+    						<td>{{ product.productname }}</td>
+  							</tr>
+						</table>
+	</div>
+	
+		
 
     <footer>
         <div class="container">

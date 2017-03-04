@@ -5,8 +5,8 @@ var express = require('express')
   , path = require('path');
 
 var mongo = require("./routes/mongo");
-//var mongoConnectURL = "mongodb://pavanshah77:pavanshah77@ds129028.mlab.com:29028/helpmyusersdatabase";
 var mongoConnectURL = "mongodb://pavanshah77:pavanshah77@ds113680.mlab.com:13680/freshpepdb";
+var products = require("./routes/products");
 
 var app = express();
 
@@ -22,8 +22,6 @@ app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
 
 
-
-
 // development only
 if ('development' == app.get('env')) {
   app.use(express.errorHandler());
@@ -31,6 +29,8 @@ if ('development' == app.get('env')) {
 
 app.get('/', routes.index);
 app.get('/users', user.list);
+
+app.post('/fetchProducts', products.fetchProducts);
 
 mongo.connect(mongoConnectURL, function(){
   console.log('Connected to mongo at: ' + mongoConnectURL);
